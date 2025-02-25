@@ -335,8 +335,8 @@ def inject_ser():
     date_today = datetime.now().strftime("%d %b %y - %H:%M")
 
     directory_path = "static/images/glob_images"
-    # slider_images = get_all_images_from_directory(directory_path)
-    slider_images = []
+    slider_images = get_all_images_from_directory(directory_path)
+    # slider_images = []
     print("Images: ",slider_images)
     
 
