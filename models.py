@@ -70,7 +70,7 @@ class admin_user(User):
     __tablename__ = 'admin_user'
 
     id = db.Column(db.Integer, ForeignKey('user.id'), primary_key=True)
-    contacts = db.Column(db.String(20))
+    adm_contacts = db.Column(db.String(20))
     date_of_birth = db.Column(db.DateTime())
     address = db.Column(db.String(120))
     company_name = db.Column(db.String(120))
