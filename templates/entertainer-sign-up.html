@@ -1,0 +1,164 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<section id="" class="services ">
+    <div class="form-container">
+        <div class="space-filler"></div>
+    <div><small style="border:none" class="sub-topic-details" >Sign Up Form</small><br>
+    <small>"Discover New Exciting Ways Communicate with us!"</small>
+    <small>"Access our Menu Online & Make Orders with Ease and Discover Weekly Specials wherever you are!</small>
+    </div>
+    <div class="line"></div><br>
+
+    
+    <form style="background-color: f8db5a;width:;"  _lpchecked="1" action="" method="post">
+        <div><small style="border:none" class="form-groups-subs">Admin Details</small></div><br>
+        
+        <!-------Post By--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.hidden_tag() }}
+            {{ register.name.label(class="labels")}}<br>
+            {{ register.name(class="form-control adj-width-60",placeholder="name")}}
+            {% for error in register.name.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+
+        </div>
+
+        <div style="background-color: f8f95a;" class="job-ad-group marginise-bottom">
+
+            {{ register.email.label(class="labels")}}
+            {{ register.email(class="form-control adj-width-60", placeholder="email")}}
+            {% if register.email.errors %}
+            {% for error in register.email.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div style="background-color: f8f95a;" class="job-ad-group marginise-bottom">
+            {{ register.password.label(class="labels")}}
+            {{ register.password(class="form-control adj-width-60", placeholder="password")}}
+            {% if register.password.errors %}
+            {% for error in register.password.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div style="background-color: f8f95a;" class="job-ad-group marginise-bottom">
+            {{ register.confirm.label(class="labels")}}
+            {{ register.confirm(class="form-control adj-width-60", placeholder="confirm password")}}
+            {% if register.confirm.errors %}
+            {% for error in register.confirm.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+    <!-------contacts--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.contacts.label(class="labels")}}<br>
+            {{ register.contacts(class="form-control adj-width-60",placeholder="e.g. (+268) 7600 0000")}}
+            {% if register.contacts.errors %}
+            {% for error in register.contacts.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+        <!-------whatsapp--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.whatsapp.label(class="labels")}}<br>
+            {{ register.whatsapp(class="form-control adj-width-60",placeholder="e.g. (+268) 7600 0001")}}
+            {% if register.whatsapp.errors %}
+            {% for error in register.whatsapp.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------company_address--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.company_address.label(class="labels")}}<br>
+            {{ register.company_address(class="form-control adj-width-60",placeholder="e.g. Mbabane, Gwamile street behind Mahalowa Bar")}}
+            {% if register.company_address.errors %}
+            {% for error in register.company_address.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <label class="labels" for="gps-link">GPS Link</label>
+        <div class="job-ad-group marginise-bottom">
+            <input class="form-control adj-width-60" type="text" name="gps-link" placeholder="paste GPS link here" />
+        </div>
+
+        <!-------industry_category--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.industry_category.label(class="labels")}}<br>
+            {{ register.industry_category(class="form-control adj-width-60",placeholder="e.g. Restuarant & Bar")}}
+            {% if register.industry_category.errors %}
+            {% for error in register.industry_category.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------web_link--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.web_link.label(class="labels")}}<br>
+            {{ register.web_link(class="form-control adj-width-60",placeholder="e.g. https://www.vakashanexplore.com")}}
+            {% if register.web_link.errors %}
+            {% for error in register.web_link.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-------facebook--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.facebook.label(class="labels")}}<br>
+            {{ register.facebook(class="form-control adj-width-60",placeholder="e.g. http://www.facebook.com")}}
+            {% if register.facebook.errors %}
+            {% for error in register.facebook.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+        <!-------twitter_link--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.twitter_link.label(class="labels")}}<br>
+            {{ register.twitter_link(class="form-control adj-width-60",placeholder=" X Link - former Twitter")}}
+            {% if register.twitter_link.errors %}
+            {% for error in register.twitter_link.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------youtube_link--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ register.youtube_link.label(class="labels")}}<br>
+            {{ register.youtube_link(class="form-control adj-width-60",placeholder="Youtube")}}
+            {% if register.youtube_link.errors %}
+            {% for error in register.youtube_link.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            {{ register.submit(class="btns") }}
+            <!--<input class="btns" type="submit" value="Create Account" />-->
+    </div>
+
+    </form>
+</div>
+</section>
+
+{% endblock %}

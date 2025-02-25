@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="static/src/css/styles_cbs.css" />
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <title>{{title}}</title>
+<!-- Navigation  -->
+    <div style="position:absolute;top:0px;left:0px;z-index:1500" class="nav-container">
+        <div id="menu-icon" onclick="sideNavFunc()" class="nav-item-main">
+            <a  class="nav-link-img">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="70px" height="80px" viewBox="0 0 78 80" style="enable-background:new 0 0 78 80;" xml:space="preserve">
+                    <g>
+                        <path style="fill:none;stroke:#555;stroke-width:2;stroke-miterlimit:10;" d="M62,50.923c0,6.627-5.373,12-12,12H34
+                            c-6.627,0-12-5.373-12-12V35.078c0-6.627,5.373-12,12-12h16c6.627,0,12,5.373,12,12V50.923z"/>
+                        <g>
+                            <line style="fill:none;stroke:#555;stroke-width:2;stroke-miterlimit:10;" x1="31.5" y1="34.016" x2="52.5" y2="34.016"/>
+                            <line style="fill:none;stroke:#555;stroke-width:2;stroke-miterlimit:10;" x1="31.5" y1="43.103" x2="52.5" y2="43.103"/>
+                            <line style="fill:none;stroke:#555;stroke-width:2;stroke-miterlimit:10;" x1="31.5" y1="52.191" x2="52.5" y2="52.191"/>
+                        </g>
+                    </g>
+                </svg>
+            </a>
+        </div>
+        <div class="nav-item-main nav-ays">
+            <a class="nav-link" href="/"><img style="height:30px" src="static/icons/home_icon.png" /></a> <a class="nav-link" href="/"><span>Home</span> </a>
+        </div>
+        <div  class="nav-item-main nav-ays">
+            <a class="nav-link" href="/special_offers"><img style="height:30px" src="static/icons/specials_icon.png" /></a><a class="nav-link" href="/special_offers">Specials </a>
+        </div>
+        <div class="posts nav-ays">
+            <div class="nav-item-main">
+                <img style="height:30px" src="static/icons/menu_icon.png" /><a class="nav-link" href="/menu" >Menu</a>
+            </div>
+        </div>
+        <div id="nav-filler" style="flex-grow:1;background-color:;"></div>
+        <!-- </div> -->
+
+        <div style="background-color:;" class="user">
+            <div style="position: relative;background-color:;" class="user-label">
+            {% if current_user.is_authenticated %}
+                {% if current_user.role == 'vacationer_user' %}
+                    <a style="" class="user-label text-decor" href="/vac_account" >
+                        <div style="background:none;"><span style="font-size:12px;text-wrap: nowrap;font-weight: 700;color:rgb(65, 55, 55)" class="nav-link1">{{current_user.name}}</span></div>
+                        <div style="height:40px;width:40px" class="img-cont">
+                            <img class="prf-image" src="static/images/{{current_user.image}}" alt=""/>
+                        </div class="flex-center">
+                    </a>
+                {% elif current_user.role == 'company_user'  %}
+                    <a style="" class="user-label text-decor" href="/entertainment_account" >
+                        <div style="background:none;"><span style="font-size:12px;text-wrap: nowrap;font-weight: 700;color:rgb(65, 55, 55)" class="nav-link1">{{current_user.name}}</span></div>
+                        <div style="height:40px;width:40px" class="img-cont">
+                            <img class="prf-image" src="static/images/{{current_user.image}}" alt=""/>
+                        </div class="flex-center">
+                    </a>
+                {% endif %}
+                <div class="user-icns"><a stlye="color:white !important" class="btns-outlined links-user" href="/logout">Logout</a></div>
+                {% else %}
+                <a class="" href="/login"><div id="login" style="" class="user-icns">
+                    <label style="color:rgb(233, 67, 54);font-weight:700;" class="btns-outlined links-user" href="/login">Login</div></a>
+                <div id="register" style="" class="user-icns"><a style="color:white !important" class="btns-user links-user" href="/vac_signup">Register</a></div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div style="position:relative" class="slider-cont gen-flex">  
+            <img style="transform: scale(0.7);" src="static/icons/tfh_logo.png" id="app_logo" />
+            <div class="slide-image"><img style="width: 100%;" src="static/images/break-fast.jpg"/></div>
+        </div>
+    </div>
+
+    {%if Slider%}
+    <!-- Mobile  -->
+    <div style="position:relative" class="slider-cont-phone gen-flex"> 
+        <div class="logo-cont">
+            <img style="transform: scale(0.7);" src="static/icons/tfh_logo.png" id="app_logo_mobile" />
+        </div> 
+        <div class="slide-image"><img style="width: 100%;" src="static/images/break-fast.jpg"/></div>
+
+    </div>
+    {%endif%}
+
+    <div onclick="closeSideNavFunc()"  id="side-navig-bg" class="side-nav-bg gen-flex-col">
+        <div id="side-navig-cont" class="side-nav-cont move-to-appear gen-flex-col">
+            <div style="padding-top:25px"  class="gen-flex-col cat-item-cont">
+              <a href="/"><img style="height:80px" src="static/icons/tfh_logo.png" /></a>
+              <a href="/"> <div class="cat-item"><span>Home</span></div></a>
+              <a href="/menu"> <div class="cat-item"><span>Menu</span></div></a>
+              <a href="#"> <div class="cat-item"><span>Order Status</span></div></a>
+              <a href="#"> <div class="cat-item"><span>Order History</span></div></a>
+              <a href="#"> <div class="cat-item"><span>Specials</span></div></a>
+              <a href="#"> <div class="cat-item"><span>New Dishes</span></div></a>
+              <a href="#"> <div class="cat-item"><span>My Points</span></div></a>
+              <a href="#"> <div class="cat-item"><span>Account</span></div></a>
+              {%for category in categories%}
+              <!----Construct number of images--->
+              {% set num_images = images | selectattr('image_category', 'equalto', category) | list | length %} 
+                  <a href="/?cat={{category}}"> <div class="cat-item"><span>{{category}}</span>{%if num_images > 0%}<small class="num gen-flex">{{num_images}}</small>{%endif%}</div></a>
+              {%endfor%}
+            </div>
+            <div class="filler"></div>
+          <div class="gen-flex-col lower-nav">
+              <a href="#" download><div class="gen-flex"><img style="height:30px" src="static/icons/android-icon.png" /><span class="labels">Install App</span></div></a>
+              <a href="#"><div class="gen-flex"><img style="height:30px" src="static/icons/about-icon.png" /><span class="labels">About</span></div></a> 
+          </div>
+        </div>   
+    </div>
+
+    
+    
+</head>
+
+
+<body><br>
+    <div class="container">
+            {% if menu_banner %}
+
+            {% endif %}
+
+            {% if not page_info %}
+            {%if Slider%}
+            <br><br>
+            <div style="z-index:400;background-color:;" id="welcome-design">
+                <div class="slider-container">
+                    <div class="gen-flex-col">
+                        <h1 class="ad-text">Fuel Up Your Day at The Food Hut</h1>
+                        <h1 class="ad-text">😍😋🤩</h1>
+                    </div>
+                    {% for image in slider_images%}
+                        <img class="images-slides" id="img_{{loop.index}}" src="{{image}}" alt="Food Special 1">
+                    {%endfor%}
+                    <img style="height: 70px;width:70px" class="logo-at-ad" src="static/icons/tfh_logo.png" />
+                </div>
+                {%endif%}
+            </div>
+            <br><br>
+            {% endif %}
+
+            <div class="content-cont">
+
+                <div class="left-section">
+                    <div class="menu-ad-link">
+                        <!-- <img style="height: 70px;" src="static/icons/menu-icon-s.png" />
+                        <div>Dive into a world of flavors with our curated menus featuring your favorite cuisines from dream destinations. Click now to begin your taste adventure!</div>
+                        <div> Place your order online! </div> -->
+                    </div>
+                </div>
+
+                <div class="content-center" style="">
+                {% block content %}
+                
+                {% block home_content %}
+                {% endblock %}
+                
+            
+                {%endblock%}
+                </div>
+
+            <div class="right-section">
+                <!-- <div class="ad-link">
+                    <img style="height:40px;" src="static/icons/menu-icon-s.png" />
+                    <div style="color:rgb(246, 148, 31);font-size:large;font-weight:700">Menus</div>
+                    <img style="width: inherit !important" src="static/images/ad_menu_1.jpg">
+                    <div style="text-align: center;"><label class="labels">Dive into a world of flavors with our curated menus featuring your favorite cuisines from dream destinations. Click now to begin your taste adventure!</label></div>
+                    <div><a href="/menu_holders"><div style="justify-content: center;" class="actions">
+                    <div style="height:26px;color:azure;min-width:100px;width:70px;font-size:13px" class="order-cont">Order Live!</div></div></a></div>
+                </div>
+                
+                <div class="ad-link">
+                    <img style="width:inherit;" src="static/images/specials_Advert.png" />
+                    <div>
+                        <a href="/special_offers"><div style="justify-content: center;" class="actions">
+                            <div style="height:26px;color:azure;min-width:100px;width:70px;font-size:13px" class="order-cont">Specials</div></div>
+                        </a>
+                    </div>
+            
+                </div> -->
+            </div>
+
+            
+              
+
+    </div>
+
+
+
+    <script src="static/src/js/js_script.js">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

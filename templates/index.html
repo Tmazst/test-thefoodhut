@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+    .form-fields{display:flex;flex-direction:column;}
+    .sub-topics{margin: 0 auto;height:80px;width:60%;}
+    .price-tag{font-size:30px;font-weight: 600;color: rgb(116, 101, 96)}
+    .search-cont{background-color:;display: flex;justify-content:center;padding:10px}
+    .search-cont input{border: 1px solid grey;border-radius:10px;padding: 5px;}
+    .availability{border-radius:5px;padding:5px 10px;background-color: coral;color:antiquewhite;font-weight: 600;}
+    .location{font-size:20px !important}
+    .sub-topics h1,small,p{text-align: center}
+    .sel-info-cont{display: flex;justify-content: center;align-items: center;}
+    .sel-info-cont p{text-wrap: nowrap}
+    .right-section{display: none;}
+    .left-section{display: none;}
+    .h2,h3{
+        font-weight: 500;color:rgb(64, 64, 65)
+    }
+    .menu-sections{box-shadow: 0 2px 20px rgba(0,0,0,0.4);background-color: rgb(22, 22, 22);padding:20px;border-radius: 20px}
+    
+/* section{ background-image:url(static/images/bg_service.png) } */
+
+    /* section{ background-image:url(static/images/bg_service.png) } */
+</style>
+
+<div style="width:;margin:0 auto;background-color:;">
+    <!-- <a id="contact_us"></a> -->
+    <section style="background-color:;" id="" class="services hidden">
+        <!-- Flash message -->
+
+        <div class="flash-messages ">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for  category, message in messages %}
+                        <div class="flash-messages alert-{{category}}"> {{message}}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div><br>
+
+    </section>
+</div>
+
+
+<!-- Second Post  -->
+ <section>
+    <div class="advert-cont">
+        <img style="width:100%" src="static/icons/ad.png" />
+    </div>
+    <br>
+    <!-- <div class="facilities-btns hide" style="width:100%;">
+        <div class="food-ads-cont" style="width:100%;overflow: auto;">
+            <div style="width:auto !important;" class="food-ads">
+                <div style="background-color:rgb(138, 39, 44);color:white;align-items: flex-start;" class="food-ad general-flex">
+                    <img style="" src="static/icons/menu-loc-icon-01.png" /> 
+                    <span>Manzini</span>
+                    <div style="width:60%;justify-items: flex-start;"><hr></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Bhunu Mall</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Matsapha</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Mankayane</span></div>
+                    <span style="font-size:14px;font-weight: 500;width:100%">More....</span>
+                </div>
+                <div style="background-color:rgb(155, 115, 29);color:white" class="food-ad" class="food-ad general-flex">
+                    <img style="" src="static/icons/menu-loc-icon-01.png" /> 
+                    <span>Hhohho</span>
+                    <div style="width:60%;justify-items: flex-start;"><hr></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Mbabane</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Piggs Peak</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Tshaneni</span></div>
+                    <span style="font-size:14px;font-weight: 500;width:100%">More....</span>
+                </div>
+                <div style="background:linear-gradient(90deg,rgba(233, 67, 54,1)0%, rgba(75, 47, 12, 1) 100%);color:white" class="food-ad" class="food-ad general-flex">
+                    <img style="" src="static/icons/menu-loc-icon-01.png" /> 
+                    <span>Shiselweni</span>
+                    <div style="width:60%;justify-items: flex-start;"><hr></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Nhlangano</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Lavumisa</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Sidvokodvo</span></div>
+                    <span style="font-size:14px;font-weight: 500;width:100%">More....</span>
+                </div>
+                <div style="background:linear-gradient(90deg,rgba(233, 67, 54,1)0%, rgba(246, 148, 31,1) 100%);color:white" class="food-ad" class="food-ad general-flex">
+                    <img style="" src="static/icons/menu-loc-icon-01.png" /> 
+                    <span>Lubombo</span>
+                    <div style="width:60%;justify-items: flex-start;"><hr></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Siteki</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Simunye</span></div>
+                    <div class="general-flex"><img style="height:20px" src="static/icons/tick.png" /> <span class="names-foods" style="">Lomahasha</span></div>
+                    <span style="font-size:14px;font-weight: 500;width:100%">More....</span>
+                </div>
+            </div><br>
+        </div><br>
+<div onclick="showHideFbtns()" class="filter-subs" ><img style="height:40px" src="static/icons/filter-icon.png" /><h3>Select Facilities You're Looking For</h3>
+        <img id="cont-handle" style="height:35px" src="static/icons/content-handle-icon.png" />
+        </div>
+        <div  class="facilities-btns hide">
+            <div class="btns">pool</div>
+            <div class="btns">Jumping Castle</div>
+            <div class="btns">Campsites</div>
+            <div class="btns">Hiking</div>
+            <div class="btns">Game Room</div>
+            <div class="btns">Fishing Spot</div>
+            <div class="btns">Campfire</div>
+            <div class="btns">Tennis Courts</div><br>
+            <div id="register"  style="" class="user-icns"><a style="color:white !important" class="btns-user " href="/menu_holders">Search</a></div>
+        </div><br> 
+    </div> -->
+ </section>
+
+
+
+<div class="opt-container">
+    <a href="/menu"><div id="all-btn" class="opts-btns">All</div></a>
+    {% for food_group in food_groups %}
+        <a href="/menu?fvar={{ser.dumps({'data':food_group})}}"><div class="opts-btns">{{food_group}}</div></a>
+    {% endfor %}
+</div><br><br>
+
+<!-- Menu Lists  -->
+<section class="menu-list-cont menu-sections "> 
+        {% for item in query_menu %}
+        <div class="menu-list">
+            <div onclick="popMenuItem('{{item.id}}')" style="height:45px;width:45px;overflow: hidden;border-radius: 10px;"><img style="height:inherit;border-radius:10px" src="static/uploads/{{item.main_img}}" /></div>
+            <div class="item-as-btn" style="text-wrap: nowrap;" onclick="popMenuItem('{{item.id}}')" class="menu-item">{{item.item_name}}</div>
+            <div style="background-color;height: 1px;flex-grow:1;" class="line-menu"></div>
+            <label style="font-weight: 600;font-size: 23px;">{{item.item_price}}0</label>
+        </div>
+
+        <!-- POP UP -->
+        <div id="pop_menucont_{{item.id}}" class="pop-cont">
+            <div style="height:;max-width:500px;top:200px;" id="popup_menu_{{item.id}}" class="pop-up">
+                <div style="max-width:500px !important;">  
+                    <h4>Order Online!</h4>
+                    <small>Avoid queues—find your order ready for pickup or have it delivered to your address</small>
+                    <div class="cont">
+                        <div class="menu-item-container">
+                            <div class="item-images-cont">
+                                
+                                <div style="" class="item-main-img">
+                                    <div class="bg-image">
+                                        <img src="static/uploads/{{item.main_img}}" />
+                                    </div>
+                                   
+                                    <img class="foreground-image" style="height:inherit" src="static/uploads/{{item.main_img}}" />
+                                </div>
+            
+                                <div class="price-tag-outline" id="dynamic-after" style="padding:px;z-index:501"><label class="price-label" style="padding:px;z-index:502">{{item.item_price}}</label><label class="price-label" style="font-size: 13px;">.50</label></div> 
+                            </div>
+                        </div><br>
+                        <h1>{{item.item_name}}</h1>
+                        <div class="item-caption widther">{{item.item_caption}}</div>
+                        <div><a href="/place_order?mid={{ser.dumps({'data':item.id})}}"><div style="justify-content: center;" class="actions">
+                            <div style="height:26px;color:azure;min-width:100px;width:70px;font-size:13px" class="order-cont">Order Live!</div></div></a></div><br>
+                        
+                        
+                        <div style="display:flex;gap:5px">
+                            {%if item.item_description%}
+                            <div class="item-description widther">{{item.item_description}}</div>
+                            {%endif%}
+
+                        </div><br><br>
+                        <div style="align-self:;"><input class="no-btn" onclick="closeMenuPop('{{item.id}}')" type="button" value="Exit"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</section> <br><br>
+
+<h1>Suggested For You😍:</h1>
+
+{% for food_group in food_groups %}
+    {% for item in query_menu %}
+        {% if food_group == item.item_food_group %}
+        <section style="" class="menu-sections menu-cards">  
+            <div class="cont">
+
+                <div style="position:relative" class="menu-title" >
+                    <div class="img-conta gen-flex" >
+                    <img height="30px" src="static/icons/tfh_logo_icon.png" />
+                    </div>
+                    <h1 class="food-group">{{food_group.title()}}</h1>
+                    <!-- <img style="position:absolute;bottom: 2px;left:50%" height="30px" src="static/icons/tfh_logo_icon.png" /> -->
+                </div>
+                
+                <div class="menu-item-container" >
+                    <div class="item-images-cont">
+                        
+                        <div style="" class="item-main-img">
+                            <!-- <div class="bg-image">
+                                <img src="static/uploads/{{item.main_img}}" />
+                            </div> -->
+                            <img class="foreground-image" style="height:inherit" src="static/uploads/{{item.main_img}}" />
+                        </div>
+                        <div class="price-tag-outline" id="dynamic-after" style="padding:px;z-index:501"><label class="price-label" style="padding:px;z-index:502">{{item.item_price}}</label><label class="price-label" style="font-size: 13px;">.50</label></div>
+
+                    </div>
+                </div><br><br>
+                <h1 class="item-name widther">{{item.item_name}}</h1>
+                <div class="item-caption widther">{{item.item_caption}}</div>
+                <div><a href="/place_order?mid={{ser.dumps({'data':item.id})}}"><div style="justify-content: center;" class="actions">
+                    <div style="height:30px;color:azure;min-width:100px;width:80px;font-size:13px" class="order-cont">Order Live!</div></div></a></div><br>
+                {%if item.item_description%}
+                <div class="item-description widther">{{item.item_description}}</div>
+                {%endif%}<br>
+                {%if item.item_ingred123ients%}
+                <div class="widther ingred" style="">Ingredients:</div>
+                <div class="item-ingridients widther">{{item.item_ingredients}}</div>
+                {%endif%}
+                
+                <div style="display:flex;gap:5px">
+                    {% if current_user.is_authenticated and current_user.id == item.cid %}
+                        <a class="edit_btn" href="/menu_item_edit?mid={{ser.dumps({'data':item.id})}}">Edit</a>
+                        <a class="edit_btn svg-hrefs" href="/menu_item_edit?mid={{ser.dumps({'data':item.id})}}"><object style="height:18px" type="image/svg+xml" data="static/icons/delete-icon.svg" ></object></a>
+                    {% endif %}
+                </div><br><br>
+                {% if current_user.is_authenticated and current_user.id == item.cid %}
+                <div style="width:auto;margin:10px auto">
+                    <div id="register"  style="" class="user-icns"><a style="color:white !important" class="btns-user links-user" href="/menu_item_form">+Add Menu</a></div>
+                </div>
+                {% endif %}
+            </div>
+            <!-- <div style="width:auto" class="actions">
+                <object type="image/svg+xml" data="static/icons/heart-icon.svg" class="heart-icon"></object><div class="likes-no" style=""></div>  
+            </div> -->
+        </section><br><br><div class="space-filler"></div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+
+
+
+<div id="image-viewer">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="full-image">
+</div>
+
+<div class="space-filler"></div>
+
+
+<br><br><br><br>
+<div class="space-filler"></div>
+
+<div id="image-viewer">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="full-image">
+</div>
+
+<div class="space-filler"></div>
+
+
+<script>
+
+    var btn = document.querySelectorAll(".layout-icons");
+
+    // Load the active button from localStorage
+    var activeButton = localStorage.getItem("activeLayBtn");
+    if (activeButton) {
+        btn.forEach(eabtn => {
+            if (eabtn.textContent.trim() === activeButton) {
+                eabtn.classList.add("active"); // Add the active class if it matches
+                console.log("Check Btn: ", eabtn.textContent.trim())
+            }
+        });
+    };
+
+
+    btn.forEach(eabtn => { 
+        eabtn.addEventListener("click", function() {
+            btn.preventDefault();
+            // Remove 'active' class from all buttons
+            btn.forEach(button => button.classList.remove("active"));
+            // Add 'active' class to the clicked button
+            this.classList.add("active");
+
+            console.log("Check Btn: ", this.textContent.trim())
+
+            // Save the clicked button's text to localStorage
+            localStorage.setItem("activeLayBtn", this.textContent.trim());
+        });
+    });
+
+    var btn = document.querySelectorAll(".opts-btns");
+var allBtn = document.querySelectorAll("#all-btn");
+
+// Load the active button from localStorage
+var activeButton = localStorage.getItem("activeButton");
+if (activeButton) {
+    btn.forEach(eabtn => {
+        if (eabtn.textContent.trim() === activeButton) {
+            eabtn.classList.add("active"); // Add the active class if it matches
+        }
+    });
+};
+
+
+btn.forEach(eabtn => { 
+    eabtn.addEventListener("click", function() {
+        // Remove 'active' class from all buttons
+        btn.forEach(button => button.classList.remove("active"));
+        // allBtn.classList.remove("active");
+        // Add 'active' class to the clicked button
+        this.classList.add("active");
+
+        // Save the clicked button's text to localStorage
+        localStorage.setItem("activeButton", this.textContent.trim());
+    });
+});
+
+
+
+
+    var cont = document.getElementById("dynamic-after");
+
+    cont.style.setProperty('--after-content','"(updated)"');
+
+</script>
+{% endblock %}

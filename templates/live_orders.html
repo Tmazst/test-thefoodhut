@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .form-fields{display:flex;flex-direction:column;}
+    .sub-topics{margin: 0 auto;height:80px;width:60%;}
+    .price-tag{font-size:30px;font-weight: 600;color: rgb(116, 101, 96)}
+    .search-cont{background-color:;display: flex;justify-content:center;padding:10px}
+    .search-cont input{border: 1px solid grey;border-radius:10px;padding: 5px;}
+    .availability{border-radius:5px;padding:5px 10px;background-color: coral;color:antiquewhite;font-weight: 600;}
+    .location{font-size:20px !important}
+    .sub-topics h1,small,p{text-align: center}
+    .sel-info-cont{display: flex;justify-content: center;align-items: center;}
+    .sel-info-cont p{text-wrap: nowrap}
+    /* section{ background-image:url(static/images/bg_service.png) } */
+</style>
+
+<div style="width:;margin:0 auto;background-color:;">
+    <!-- <a id="contact_us"></a> -->
+        <!-- Flash Message -->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for  category, message in messages %}
+                        <div class="flash-messages alert-{{category}}"> {{message}}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div><br>
+
+
+<!--  Second Post  -->
+
+<section>  
+    <div style="background-color: rgb(206, 206, 206);" class="cont">
+        <h1 class="food-group">{{item.food_group}}</h1>
+        <div class="menu-title" >
+        <div class="vne-orders" ></div><h1 class="food-group">VnE Orders</h1></div>
+
+        <div class="item-info"></div>
+
+        <div class="checkout-grid-container">
+            <div class="product-image">
+              <img src="static/uploads/{{item.main_img}}" alt="Product Image">
+            </div>
+            <div class="product-details">
+              <h3>{{item.item_name}}</h3>
+              <p>{{item.item_description}}</p>
+              <p>Quantity: 2</p>
+              <p>Price: $19.99</p>
+            </div>
+            <div class="product-total">
+              <p>Total: $39.98</p>
+            </div>
+          </div>
+
+        <div style="width:auto" class="actions">
+        </div>
+        <div class="line"></div><br>
+        <h2 style="color:red;margin:5px auto"> Order Checkout </h2>
+        <small style="color:rgb(94, 51, 51);margin:5px auto;font-weight: 600;">Please Confirm quantity & proceed!</small>
+        <div style="display:flex;gap:5px;justify-content:center">
+            
+            {% if current_user.is_authenticated and current_user.role == "vacationer_user" %}
+                <form style="margin:5px auto;" _lpchecked="1" action="" method="post">
+                    <input style="display: none;: hidden;" type="text" name="mid" value="{{item.id}}" />
+                    <input style="width:50px;" class="form-control order_qty" name="qty" type="text" value="{{order_qty}}" />
+                    <div style="display: flex; align-items: center;">
+                        <!-- Minus Button -->
+                        <button class="qty-minus" style="width: 30px; height: 30px;">-</button>
+                    
+                        <!-- Quantity Input -->
+                        <input 
+                            style="width: 50px; text-align: center;" 
+                            class="order_qty" 
+                            name="qty" 
+                            type="number" 
+                            value="{{order_qty}}"
+                            min="1"
+                        >
+                    
+                        <!-- Plus Button -->
+                        <button class="qty-plus" style="width: 30px; height: 30px;">+</button>
+                    </div>
+                    <input type="submit" value="Confirm"  class="order-btns" style="background-color: ;"/>
+                </form>
+            {% endif %}
+        </div>
+        
+    </div>
+</section><br><br><div class="space-filler"></div>
+
+
+
+<div id="image-viewer">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="full-image">
+</div>
+
+<div class="space-filler"></div>
+
+
+<script>
+    var cont = document.getElementById("dynamic-after");
+
+    cont.style.setProperty('--after-content','"(updated)"');
+
+
+
+</script>
+{% endblock %}

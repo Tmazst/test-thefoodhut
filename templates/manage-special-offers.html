@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+{% block content %}
+<style>
+    section{margin-bottom:;}
+</style>
+
+
+<div style="width:;margin:0 auto">
+    <section id="" class="services hidden">
+
+        <!-- Flash message -->
+        <div class="sub-topics"><p></p></div>
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for  category, message in messages %}
+                        <div class="flash-messages alert-{{category}}"> {{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <div style="margin:0 auto;background-color:;width:200px !important" class="center-prl-img">
+            <div style="margin-left:;"  class="img-cont">
+                    <img class="prf-image" src="static/images/{{current_user.image}}" />
+            </div>
+            <h4 style="font-size:22px;margin-left:;margin-bottom:0;text-align:center;color:#504f4f"> {{current_user.name}}<br> <span class="spans" style="font-size:16px">{{current_user.email}}</span></h4>
+        </div><br><br>
+
+        <div><p class="sub-topic-details" >Manage Ads</p>
+            <div class="flex-center"><small class="sub-title"><span>{{no_of_ads}} Ads Posted</span></small></div>
+            <!-- <div class="line"></div> -->
+        </div><br>
+
+        <!-- Main -->
+        {% for offer in offers_query %}
+        <h2 class="numburing">{{loop.index}}</h2>
+        <div class="sub-topics" style="background-color:;margin-bottom: 10px;">
+            <h1 style="margin: 0 auto;text-align:center;color:#502525">{{offer.special}}<br></h1>
+            <h4 style="margin: 0 auto;text-align:center;color:#534141">{{offer.timestamp}}</h4>
+            <!-- <small><span style="font-size:smaller">Enjoy this new selection of fresh</span></small> -->
+        </div>
+        
+        <!--  -->
+        <div class="main-img-cont">
+            <img id="image" class="main-img" src="static/images/{{offer.poster_ad}}"  />
+        </div>
+        </div style="background-color:" class="flex-center">
+            <div class="flex-center"><small class="sub-title"> {% if not (datetime.now() - offer.timestamp).days > 0 %} <span>{{offer.other1}}</span>  
+                    <span style="color:rgb(99, 99, 98)">Ad Expired: {{(datetime.now() - offer.timestamp).days}} days ago</span> </small></div><br> 
+            <div class="icons-cont  flex-center">
+                <form  _lpchecked="1" action="" method="post">
+                    <label class="labels">Contact Person</label>
+                    <input type="text" class="form-control" name="contact_person" {% if offer.contact_person %} value="{{offer.contact_person}}" {% endif %} />
+                    <label type="textarea"  class="labels">Additional Info</label>
+                    <input class="form-control" name="additional_comments" {% if offer.additional_comments %} value="{{offer.additional_comments}}" {% endif %} />
+                    <input type="file" name=""
+                    <a href="/manage_special_offers?id={{ser.dumps({'data':offer.id})}}"><input id="manage-btn" class="btns" type="button" value="Edit"/></a>
+                </form>
+            </div>
+        </div>
+        <div class="space-filler"></div>
+        {% endfor %}
+        <!-- <div class="popup">
+            <div class="car_details_cont">
+                <div><p class="sub-topic-details" >Updates</p>
+                     <div class="line"></div> 
+                </div>
+                <div style="background-color:;"><p><span class="details-keys">Date Posted:</span>   <span class="detail-value"> 25 Oct 24</span></p></div>
+                <div style="background-color:;"><p><span class="details-keys">Interests:</span>   <span class="detail-value"> 25</span></p></div>
+                <div style="background-color:;"><p><span class="details-keys">Wishes:</span>   <span class="detail-value"> 6</span></p></div>
+                <div style="background-color:;"><p><span class="details-keys">Engagements:</span>   <span class="detail-value"> 13 contacted</span></p></div>
+            </div><br>
+        </div> -->
+    </section><br><br><div class="space-filler"></div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<section id="" class="services">
+    <div class="form-container">
+        <div class="space-filler"></div>
+    <div><small style="border:none" class="sub-topic-details" >My Account</small><br>
+    <small></small>
+    </div>
+    <div class="line"></div><br>
+
+    <div style="" class="img-cont">
+        
+        <div width="90%"><img class="prf-image" src="static/images/{{vac_user.image}}" alt=""/></div>
+    </div class="flex-center">
+
+    <h4 style="padding-left:30px">{{vac_user.name}}</h4>
+    <small class="labels">{{vac_user.email}}</small><br>
+    <form style="background-color: f8db5a;width:;"  _lpchecked="1" action="" method="post" enctype="multipart/form-data">
+        <div><small style="border:none" class="form-groups-subs">Personal Details</small></div><br>
+        
+        <!-------name--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.hidden_tag() }}
+            {{ update_acc.name.label(class="labels")}}<br>
+            {{ update_acc.name(class="form-control adj-width-60",placeholder="name",value=vac_user.name)}}<br>
+            {% for error in update_acc.name.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+        </div>
+
+        <!-------contacts--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.contacts.label(class="labels")}}<br>
+            {% if vac_user.contacts %}
+                {{ update_acc.contacts(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000",value=vac_user.contacts)}}<br>
+            {%else%}
+                {{ update_acc.contacts(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000")}}<br>
+            {%endif%}
+            {% if update_acc.contacts.errors %}
+            {% for error in update_acc.contacts.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------whatsapp--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.whatsapp.label(class="labels")}}
+            {% if vac_user.whatsapp %}
+                {{ update_acc.whatsapp(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000",value=vac_user.whatsapp)}}<br>
+            {%else%}
+                {{ update_acc.whatsapp(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000")}}<br>
+            {%endif%}
+            
+            {% if update_acc.whatsapp.errors %}
+            {% for error in update_acc.whatsapp.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------WORK DURATION--------->
+    <!-- <div style="display:flex"> -->
+        <div class="job-ad-group marginise-bottom">
+
+            {{ update_acc.facebook.label(class="labels")}}
+            {% if vac_user.facebook  %}
+                {{ update_acc.facebook(class="form-control adj-width-60",placeholder="e.g https://www.facebook.com",value=vac_user.facebook)}}<br>
+            {%else%}
+                {{ update_acc.facebook(class="form-control adj-width-60",placeholder="e.g https://www.facebook.com")}}<br>
+            {%endif%}
+            
+            {% if update_acc.facebook.errors %}
+            {% for error in update_acc.facebook.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- <p style="margin:0 5px;">   </p> -->
+
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.address.label(class="labels")}}
+            {% if vac_user.address is not none %}
+                {{ update_acc.address(class="form-control adj-width-60",placeholder="e.g Madlangemphisi",value=vac_user.address)}}<br>
+            {%else%}
+                {{ update_acc.address(class="form-control adj-width-60",placeholder="e.g Madlangemphisi")}}<br>
+            {%endif%}
+            
+            {% if update_acc.address.errors %}
+            {% for error in update_acc.address.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.image.label(class="labels") }}
+            {{ update_acc.image(class="form-control adj-width-60") }}
+        </div>
+    <!-- </div> -->
+
+
+        <div>
+            {{ update_acc.submit(class="btns", value="Update") }}
+            <!--<input class="btns" type="submit" value="Create Account" />-->
+    </div>
+
+    </form>
+</div>
+</section><div class="space-filler"></div><br><br>
+
+{% endblock %}

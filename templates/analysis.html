@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .form-fields{display:flex;flex-direction:column;}
+    .sub-topics{margin: 0 auto;height:80px;width:60%;}
+    .price-tag{font-size:30px;font-weight: 600;color: rgb(116, 101, 96)}
+    .search-cont{background-color:;display: flex;justify-content:center;padding:10px}
+    .search-cont input{border: 1px solid grey;border-radius:10px;padding: 5px;}
+    .availability{border-radius:5px;padding:5px 10px;background-color: coral;color:antiquewhite;font-weight: 600;}
+    .location{font-size:20px !important}
+    .sub-topics h1,small,p{text-align: center}
+    .sel-info-cont{display: flex;justify-content: center;align-items: center;}
+    .sel-info-cont p{text-wrap: nowrap}
+    /* section{ background-image:url(static/images/bg_service.png) } */
+</style>
+
+<div style="width:;margin:0 auto;background-color:;">
+    <!-- <a id="contact_us"></a> -->
+    <section style="background-color:;" id="" class="services hidden">
+
+    <!-- Chats Pop-up  -->
+    <div id="pop_chatscont_{{post.id}}" class="pop-cont">
+        <div style="height:90vh;top:30px" id="popup_chats_{{post.id}}" class="pop-up">
+            <form name="Logo Quote Request" method="post">
+                    <div class="comments-title">
+                        <h1 style="margin:0 0">Reactions</h1>
+                        <small style="color:rgb(100, 82, 182);font-weight: 600;font-size:14px">on {{usr.query.get(post.user_id).name}}'s post</small>
+                        <small style="color:#999;font-weight: 500;font-size:14px">{{post.timestamp.strftime("%d %b %y - %H:%M")}}</small><br>
+                    </div><br>
+                    <div class="comments-container" style="">
+                    <!-- <div><hr></div> -->
+                    {% for comment in post.post_comments_id %}
+                        <div style="background-color:;margin-bottom: 10px;" class="">
+                            <div>
+                                <div class="comments-cont">
+                                    <div style="height:40px;width:40px;min-width:40px" class="img-cont"><img style="height:inherit;width:inherit" class="prf-image" src="static/images/{{usr.query.get(comment.comment_by).image}}" alt=""/></div class="flex-center">
+                                    <div class='name-comment'>
+                                        <div style="background:none;"><span style="font-size:12px;text-wrap: nowrap;font-weight: 700;color:rgb(51, 15, 85)" 
+                                        class="nav-link">{{usr.query.get(comment.comment_by).name}}</span></div>
+                                        <div class="comment-content">{{comment.comment}}</div>
+                                        <div><small style="color:#747272;font-weight:600;float:left">{{comment.timestamp.strftime("%d %b %y - %H:%M")}}</small></div>
+                                    </div>
+                                    {% if current_user.is_authenticated %}
+                                        {% if comment.comment_by == current_user.id %}
+                                        <div class="delete-icon-cont"><a class="svg-hrefs" href="/delete_comment?del={{ser.dumps({'data':comment.id})}}">
+                                            <object type="image/svg+xml" data="static/icons/delete-icon.svg" id="delete-icon" > </object></a>
+                                        </div>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <br><br>
+                    <!-- <div style="flex-grow:1"></div> -->
+                    <div><hr></div>
+                        <form  class="form-comment" style="background-color: f8db5a;width:;"  _lpchecked="1" action="" method="post" enctype="multipart/form-data">
+                            {{comments_form.hidden_tag()}}
+                            {{comments_form.comment(class="form-control",placeholder="Comment",id="commentField")}}
+                            {{comments_form.submit(style='font-size:18px;padding:5px',class="yes-btn",placeholder="Comment",value="Post")}}
+                            {{comments_form.post_id(class="form-control hide-field",placeholder="Comment",value=ser.dumps({'data':post.id}))}}
+                        </form>
+                    <!-- <div style="flex-grow:1"></div> -->
+                    <div class="btn-absolute" ><input onclick="closeChatsPopup('{{post.id}}')" class="no-btn" type="button" value="Exit"></div>
+            </form>
+        </div>
+    </div>
+
+</section><br><br><br><br><div class="space-filler"></div>
+{% endfor %}
+
+
+<div class="space-filler"></div>
+
+<script>
+
+    function displayImage(carId, image) {
+        let mainImg = document.querySelector("#image" + carId);
+        mainImg.src = "static/uploads/" + image;
+    }
+
+</script>
+{% endblock %}

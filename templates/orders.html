@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .form-fields{display:flex;flex-direction:column;}
+    .sub-topics{margin: 0 auto;height:80px;width:60%;}
+    .price-tag{font-size:30px;font-weight: 600;color: rgb(116, 101, 96)}
+    .search-cont{background-color:;display: flex;justify-content:center;padding:10px}
+    .search-cont input{border: 1px solid grey;border-radius:10px;padding: 5px;}
+    .availability{border-radius:5px;padding:5px 10px;background-color: coral;color:antiquewhite;font-weight: 600;}
+    .location{font-size:20px !important}
+    .sub-topics h1,small,p{text-align: center}
+    .sel-info-cont{display: flex;justify-content: center;align-items: center;}
+    .sel-info-cont p{text-wrap: nowrap}
+    /* section{ background-image:url(static/images/bg_service.png) } */
+</style>
+
+
+
+<!-- Flash Message -->
+<div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for  category, message in messages %}
+                <div class="flash-messages alert-{{category}}"> {{message}}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div><br>
+
+<div class="orders">
+
+    <div class="header"><label class="th-labels">QTY</label><label class="th-labels">Name</label><label class="th-labels">Group</label><label class="th-labels">Item</label><label class="th-labels">Price</label><label class="th-labels">Date</label></div>
+    {% for order in orders %}
+    <div class="rows-cont">
+        <div>{{order.order_qty}}</div>
+        <div class="table-links" onclick="popUp('{{order.vacid}}')" ><object type="image/svg+xml" data="static/icons/default-usr.svg" id="delete-icon" ></object>
+            {{usr.query.get(order.vacid).name}}</div>
+        <div>{{menu_item.query.get(order.id).item_food_group}}</div>
+        <div>{{menu_item.query.get(order.id).item_name}}</div>
+        <div>{{menu_item.query.get(order.id).item_price}}</div>
+        <div>{{order.timestamp}}</div>
+    </div>
+
+
+    <div id="pop_cont_{{order.vacid}}" class="pop-cont">
+        <div id="popup_{{order.vacid}}" class="pop-up"><br><br>
+            <form style="position:relative" name="Logo Quote Request" method="post">
+                <h4 style="margin:0 auto">Contact <span style="color:rgb(100, 82, 182)" >{{usr.query.get(order.vacid).name}}</span></h4>
+                <div><hr></div><br>
+                    <div style="background-color:;" class="bool-opt-cont">
+                        <!-- <div><a class="contact-lnks" href="#"> View </a></div> -->
+                        <div> <object type="image/svg+xml" data="static/icons/telephone-icon.svg" id="delete-icon" > </object><a class="contact-lnks" id="cell-no" href="tel:{{usr.query.get(order.vacid).contacts}}">{{usr.query.get(order.vacid).contacts}}</a></div>
+                        {% if usr.query.get(order.vacid).whatsapp %}
+                        <div><object type="image/svg+xml" data="static/icons/whatsapp-icon.svg" id="delete-icon" ></object><a class="contact-lnks" id="cell-wa" href="https://wa.me/{{usr.query.get(order.vacid).whatsapp}}">{{usr.query.get(order.vacid).whatsapp}}</a></div>
+                        {% endif %}
+                        {% if usr.query.get(order.vacid).facebook %}
+                        <div><object type="image/svg+xml" data="static/icons/facebook_outline_icon-23.svg" id="delete-icon" ></object><a class="contact-lnks" id="cell-fb" href="{{usr.query.get(order.vacid).facebook}}">{{usr.query.get(order.vacid).facebook}}</a></div>
+                        {% endif %}
+                        <div><object type="image/svg+xml" data="static/icons/email-icon.svg" id="delete-icon" ></object><a class="contact-lnks" id="cell-em" href="mailto:{{usr.query.get(order.vacid).email}}">{{usr.query.get(order.vacid).email}}</a></div>
+                    </div><br><br>
+                    <div style="flex-grow:1"></div>
+                <div  style="align-self:flex-end" ><input onclick="closePopup('{{order.vacid}}')" class="no-btn" type="button" value="Exit"></div>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+<div id="image-viewer">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="full-image">
+</div>
+
+<div class="space-filler"></div>
+
+
+<script>
+    var cont = document.getElementById("dynamic-after");
+
+    cont.style.setProperty('--after-content','"(updated)"');
+
+</script>
+{% endblock %}

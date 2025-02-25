@@ -1,0 +1,256 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<section id="" class="services">
+    <div style="z-index:1001" class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for  category, message in messages %}
+                    <div class="flash-messages alert-{{category}}"> {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="form-container">
+        <div class="space-filler"></div>
+    <div><small style="border:none" class="sub-topic-details" >Account</small><br>
+    <small></small>
+    </div>
+    <div class="line"></div><br>
+
+    <div style="" class="img-cont">
+        <img class="prf-image" src="static/images/{{entertain_user.image}}" alt=""/>
+    </div class="flex-center">
+
+    <h4 class="acc-name">{{entertain_user.name}}</h4>
+    <small  class="account-email">{{entertain_user.email}}</small><br><br>
+    <form style="background-color: f8db5a;width:;"  _lpchecked="1" action="" method="post" enctype="multipart/form-data">
+        <div><small style="border:none" class="form-groups-subs">Corporate Details</small></div><br>
+        
+        <!-------name--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.hidden_tag() }}
+            {{ update_acc.company_name.label(class="labels")}}<br>
+            {{ update_acc.company_name(class="form-control adj-width-60",placeholder="company_name",value=entertain_user.name)}}
+            {% for error in update_acc.company_name.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+        </div>
+
+
+        <!-------contacts--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.company_contacts.label(class="labels")}}<br>
+            {% if entertain_user.company_contacts %}
+                {{ update_acc.company_contacts(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000",value=entertain_user.company_contacts)}}<br>
+            {%else%}
+                {{ update_acc.company_contacts(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000")}}<br>
+            {%endif%}
+            {% if update_acc.company_contacts.errors %}
+            {% for error in update_acc.company_contacts.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------whatsapp--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.whatsapp.label(class="labels")}}
+            {% if entertain_user.whatsapp %}
+                {{ update_acc.whatsapp(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000",value=entertain_user.whatsapp)}}<br>
+            {%else%}
+                {{ update_acc.whatsapp(class="form-control adj-width-60",placeholder="e.g. (+268) 7645 0000")}}<br>
+            {%endif%}
+            
+            {% if update_acc.whatsapp.errors %}
+            {% for error in update_acc.whatsapp.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------facebook--------->
+        <div class="job-ad-group marginise-bottom">
+
+            {{ update_acc.facebook.label(class="labels")}}
+            {% if entertain_user.facebook  %}
+                {{ update_acc.facebook(class="form-control adj-width-60",placeholder="e.g https://www.facebook.com",value=entertain_user.facebook)}}<br>
+            {%else%}
+                {{ update_acc.facebook(class="form-control adj-width-60",placeholder="e.g https://www.facebook.com")}}<br>
+            {%endif%}
+            
+            {% if update_acc.facebook.errors %}
+            {% for error in update_acc.facebook.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- <p style="margin:0 5px;">   </p> -->
+
+        <!-------Twitter Link--------->
+        <div class="job-ad-group marginise-bottom">
+
+            {{ update_acc.twitter_link.label(class="labels")}}
+            {% if entertain_user.twitter_link  %}
+                {{ update_acc.twitter_link(class="form-control adj-width-60",placeholder="e.g https://www.twitter.com",value=entertain_user.twitter_link)}}<br>
+            {%else%}
+                {{ update_acc.twitter_link(class="form-control adj-width-60",placeholder="e.g https://www.twitter.com")}}<br>
+            {%endif%}
+            
+            {% if update_acc.twitter_link.errors %}
+            {% for error in update_acc.twitter_link.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------Youtube Link--------->
+        <div class="job-ad-group marginise-bottom">
+
+            {{ update_acc.youtube_link.label(class="labels")}}
+            {% if entertain_user.youtube_link  %}
+                {{ update_acc.youtube_link(class="form-control adj-width-60",value=entertain_user.youtube_link)}}<br>
+            {%else%}
+                {{ update_acc.youtube_link(class="form-control adj-width-60",placeholder="e.g https://www.twitter.com")}}<br>
+            {%endif%}
+            
+            {% if update_acc.youtube_link.errors %}
+            {% for error in update_acc.youtube_link.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------address--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.company_address.label(class="labels")}}
+            {% if entertain_user.company_address is not none %}
+                {{ update_acc.company_address(class="form-control adj-width-60",value=entertain_user.company_address)}}<br>
+            {%else%}
+                {{ update_acc.company_address(class="form-control adj-width-60",placeholder="e.g Madlangemphisi")}}<br>
+            {%endif%}
+            
+            {% if update_acc.company_address.errors %}
+            {% for error in update_acc.company_address.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------Directions Cood--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.coordinates.label(class="labels")}}
+            {% if entertain_user.coordinates is not none %}
+                {{ update_acc.coordinates(class="form-control adj-width-60",value=entertain_user.coordinates)}}<br>
+            {%else%}
+                {{ update_acc.coordinates(class="form-control adj-width-60",placeholder="e.g 41.40338, 2.17403")}}<br>
+            {%endif%}
+            
+            {% if update_acc.coordinates.errors %}
+            {% for error in update_acc.coordinates.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------Region--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.region.label(class="labels")}}
+            {% if entertain_user.region is not none %}
+                {{ update_acc.region(class="form-control adj-width-60",value=entertain_user.region)}}<br>
+            {%else%}
+                {{ update_acc.region(class="form-control adj-width-60",placeholder="e.g Manzini")}}<br>
+            {%endif%}
+            
+            {% if update_acc.region.errors %}
+            {% for error in update_acc.region.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-------Postal Code--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.zip_code.label(class="labels")}}
+            {% if entertain_user.zip_code is not none %}
+                {{ update_acc.zip_code(class="form-control adj-width-60",value=entertain_user.zip_code)}}<br>
+            {%else%}
+                {{ update_acc.zip_code(class="form-control adj-width-60",placeholder="e.g H100")}}<br>
+            {%endif%}
+            
+            {% if update_acc.zip_code.errors %}
+            {% for error in update_acc.zip_code.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+         <!-------industry_category--------->
+         <div class="job-ad-group marginise-bottom">
+            {{ update_acc.industry_category.label(class="labels")}}
+            {% if entertain_user.industry_category is not none %}
+                {{ update_acc.industry_category(class="form-control adj-width-60",placeholder="e.g Madlangemphisi",value=entertain_user.industry_category)}}<br>
+            {%else%}
+                {{ update_acc.industry_category(class="form-control adj-width-60",placeholder="e.g Madlangemphisi")}}<br>
+            {%endif%}
+            
+            {% if update_acc.industry_category.errors %}
+            {% for error in update_acc.industry_category.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+
+        <!-------Payment Options--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.payment_options.label(class="labels")}}
+            {% if entertain_user.payment_options is not none %}
+                {{ update_acc.payment_options(class="form-control adj-width-60",placeholder="e.g Madlangemphisi",value=entertain_user.payment_options)}}<br>
+            {%else%}
+                {{ update_acc.payment_options(class="form-control adj-width-60",placeholder="e.g Madlangemphisi")}}<br>
+            {%endif%}
+            
+            {% if update_acc.payment_options.errors %}
+            {% for error in update_acc.payment_options.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-------Company Profile Image--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.company_profile_img.label(class="labels")}}
+            {{ update_acc.company_profile_img(class="form-control adj-width-60")}}
+            {% if update_acc.company_profile_img.errors %}
+            {% for error in update_acc.company_profile_img.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-------Logo--------->
+        <div class="job-ad-group marginise-bottom">
+            {{ update_acc.logo.label(class="labels")}}
+            {{ update_acc.logo(class="form-control adj-width-60")}}
+            {% if update_acc.logo.errors %}
+            {% for error in update_acc.logo.errors %}
+                <span class="span-error" >*{{error}}</span>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    <!-- </div> -->
+
+
+        <div>
+            {{ update_acc.submit(class="btns", value="Update") }}
+            <!--<input class="btns" type="submit" value="Create Account" />-->
+    </div>
+
+    </form>
+</div>
+</section><div class="space-filler"></div><br><br>
+
+{% endblock %}
