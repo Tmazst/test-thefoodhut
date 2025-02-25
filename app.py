@@ -335,7 +335,8 @@ def inject_ser():
     date_today = datetime.now().strftime("%d %b %y - %H:%M")
 
     directory_path = "static/images/glob_images"
-    slider_images = get_all_images_from_directory(directory_path)
+    # slider_images = get_all_images_from_directory(directory_path)
+    slider_images = []
     print("Images: ",slider_images)
     
 
@@ -344,14 +345,14 @@ def inject_ser():
 class Contacts:
     contact = None
 
+# @app.route('/', methods=["POST","GET"])
+# def home():
+
+#     return f'Hey Folks I am having a challenge here'
+
+
 @app.route('/', methods=["POST","GET"])
 def home():
-
-    return f'Hey Folks I am having a challenge here'
-
-
-@app.route('/ffff', methods=["POST","GET"])
-def homey():
 
     menu_banner = "Menu Banner"
     layout = None
