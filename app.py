@@ -1,6 +1,3 @@
-# This is a car sale website for Eswatini agents, owners, garages and car sales stores
-# They advertise new and second cars of any brand
-# They can also sale spare parts when stripping they cars
 
 from flask import Flask,render_template,url_for,redirect,request,flash,session,jsonify
 from flask_login import login_user, LoginManager,current_user,logout_user, login_required
@@ -150,17 +147,7 @@ def delete_image_from_column(column_name, image_name):
 
 def remove_path(image,file_dir):
     pass
-    # file_path=None
-    # print("Path is: ",os.path.exists(image))
-    # if os.path.exists(image):
-    #     file_path = os.path.join(app.root_path, file_dir, image)
-    # if os.path.exists(file_path):
-    #     try:
-    #         os.remove(file_path) 
-    #     except:
-    #         return 'No Such File!'
 
-    # return True
 
 def delete_img(image,token_):
     # Get image row
@@ -189,6 +176,22 @@ def del_menu_img(image,token_):
         remove_path(file_path)
     
     return True
+
+
+# @app.after_request
+# def inspect_response(response):
+#     try:
+#         # Attempt to encode response data to UTF-8 to simulate the issue
+#         if response.data:
+#             response.data.decode('utf-8')  # This will raise an exception if there's invalid Unicode
+#         return response
+#     except UnicodeEncodeError as e:
+#         # Log the error for debugging
+#         print("UnicodeEncodeError occurred:", e)
+#         # Optionally, replace invalid characters
+#         sanitized_data = response.data.decode('utf-8', errors='replace')
+#         response.set_data(sanitized_data.encode('utf-8'))
+#         return response
 
 
 class Dont_Update:
@@ -341,11 +344,14 @@ def inject_ser():
 class Contacts:
     contact = None
 
-
-
-
 @app.route('/', methods=["POST","GET"])
 def home():
+
+    return f'Hey Folks I am having a challenge here'
+
+
+@app.route('/ffff', methods=["POST","GET"])
+def homey():
 
     menu_banner = "Menu Banner"
     layout = None
