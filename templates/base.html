@@ -7,8 +7,9 @@
     <link rel="stylesheet" type="text/css" href="static/src/css/styles_cbs.css" />
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
-    <title>{{title}}</title>
-<!-- Navigation  -->
+    <title>The Food Hut</title>
+    <link rel="icon" type="image/png" href="static/icons/tfh_logo_icon.png">
+
     <div style="position:absolute;top:0px;left:0px;z-index:1500" class="nav-container">
         <div id="menu-icon" onclick="sideNavFunc()" class="nav-item-main">
             <a  class="nav-link-img">
@@ -37,11 +38,10 @@
                 <img style="height:30px" src="static/icons/menu_icon.png" /><a class="nav-link" href="/menu" >Menu</a>
             </div>
         </div>
-        <div id="nav-filler" style="flex-grow:1;background-color:;"></div>
-        <!-- </div> -->
+        <div id="nav-filler" style="flex-grow:1;"></div>
 
-        <div style="background-color:;" class="user">
-            <div style="position: relative;background-color:;" class="user-label">
+        <div style="" class="user">
+            <div style="position: relative;" class="user-label">
             {% if current_user.is_authenticated %}
                 {% if current_user.role == 'vacationer_user' %}
                     <a style="" class="user-label text-decor" href="/vac_account" >
